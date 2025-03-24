@@ -8,11 +8,71 @@
 import SwiftUI
 
 struct BarView: View {
+    let size: CGFloat = 60
+    @Binding  var currentPage: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(alignment: .bottom, spacing: 20){
+            VStack(alignment: .center) {
+                Button(){
+                    currentPage = "Home"
+                } label: {
+                    if (currentPage == "Home"){
+                        Image(systemName: "house.fill")
+                            .resizable()
+                            .scaledToFit()
+                    } else {
+                        Image(systemName: "house")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+
+                Text("Home")
+            }
+            .foregroundStyle(.gray)
+            .frame(width: size+40,height: size)
+
+            
+            VStack(alignment: .center){
+                
+                Image(systemName: "magnifyingglass")
+                    .resizable()
+                    .scaledToFit()
+                Text("Search")
+            }
+            .foregroundStyle(.gray)
+            .frame(width: size+40,height: size)
+
+            VStack(alignment: .center){
+                Button {
+                    currentPage = "Library"
+                } label: {
+                    if (currentPage == "Library"){
+                        Image(systemName: "books.vertical.fill")
+                            .resizable()
+                            .scaledToFit()
+                    } else {
+                        Image(systemName: "books.vertical")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+
+                Text("Your library")
+                
+            }
+            .frame(width: size+40,height: size)
+            .foregroundStyle(.gray)
+
+
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 30)
+        .frame(maxWidth: .infinity, maxHeight: 80, alignment: .center)
+        .background(Color("BackGround"))
     }
 }
 
 #Preview {
-    BarView()
+    BarView(currentPage: .constant("Home"))
 }

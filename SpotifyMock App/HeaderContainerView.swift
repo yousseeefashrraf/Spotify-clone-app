@@ -21,30 +21,35 @@ struct HeaderContainerView: View {
 
 struct SongCard: View {
     let name: String
+    @Binding var currentSong: String?
     var body: some View {
-        HStack{
-            Image(name)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 80,height: 150)
-                .clipped()
-                .background(.blue)
-            Text(name)
-                .fontWeight(.bold)
-                .frame(width: 80)
-                .scaledToFit()
-                .minimumScaleFactor(0.8)
-                .foregroundStyle(.white)
-                .padding(.trailing, 10)
-                .lineLimit(nil)
-                .multilineTextAlignment(.leading)
+        Button{
+            currentSong = name
+        } label: {
+            HStack{
+                Image(name)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 80,height: 150)
+                    .clipped()
+                Text(name)
+                    .fontWeight(.bold)
+                    .frame(width: 80, alignment: .leading)
+                    .padding(.leading, 4)
+                    .scaledToFit()
+                    .minimumScaleFactor(0.8)
+                    .foregroundStyle(.white)
+                    .padding(.trailing, 10)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+            }
+            .frame(height: 80, alignment: .leading)
+            .background(Color("BackGround"))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .frame(height: 80, alignment: .leading)
-        .background(Color("BackGround"))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
 #Preview {
-    SongCard(name: "Battamen Aleik")
+    SongCard(name: "Battamen Aleik", currentSong: .constant(nil))
 }
